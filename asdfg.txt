@@ -1,0 +1,77 @@
+jwt 
+=> verify user identities, authenticate them, ensure safe communication b/w 2 ie client n server
+=> signing hma & rsa / ecdsa
+=> 1. user login(client send login cred to server) 2. if cred = valid then server creates jwt that contains user data and signs it with secret key
+=> 3. token sent back to client n stored 4. client sends token in req, client including jwt in auth header.
+=> 5. server verfies n responds.
+
+tokens securely transmit sensitive information b/w client n server 
+tokens provide secure validation
+tokens tamper-proof
+
+
+jwt structure
+header.payload.signature
+
+header has metadata of token
+payload stores claims(info abut user) ie data bein transmitted
+signature ensures token integrity and authenticity
+
+
+websockets
+=> keeps connection open b/w server and client, allows real-time 2 way communication  like live chats and online games ex bgmi, discord 
+=> real time data exchange without repeating requests
+=> connection stays open once established unless explicitly closed by either side
+=> fast message delivery
+=> flow
+   client -request-> server
+          <-handshake- 
+          <-websocket-
+=>how it work
+===> con.start  client -http req with 'upgrade: websocket' header --> server
+===> handshake  server responds with '101 switching protocols' if upgrade confirms
+===> tcp link   con.switch from http to websocket, stays open
+===> ful-duplexcon   client&server send msgs anytime without req
+===> data frames msgs split into frames(txt / binary) & sent over conn
+===> low overhead  no repetition of http headers, only msg data.exchang
+===> keep-alive conn.active remains until either side close it
+===> close handshake one side -close frame -> other , other replies then tcp link ends.
+
+why we use asyncio
+=> concurrent programming a technique for structuring programs to handle multiple tasks by executing them in overlapping time periods, not necessarily simultaneously.
+
+
+9/9/25
+jwt - provides method for securely transmitting information b/w parties as json object
+signing - two ways 
+hmac            rsa/ecdsa
+
+
+header    metadata[signing alg; token type]
+{
+	"alg": "HS256",
+	"typ": "JWT"
+}
+
+
+payload    
+{
+	"userId" : 123,
+	"role" : "admin",
+	"exp": 123456
+}
+
+
+signature
+HMACSHA256(
+	base64UrlEncode(header) + "." + base64UrlEncode(payload), 
+	secret
+)
+
+
+jwt -> http basic auth to exchange creds for jwt
+    -> gen_jwt with expiry
+    -> decode/validate jwt 
+    -> exec vscode and postman 
+    -> password hashing and storing it as string , hashing  in db
+
