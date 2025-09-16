@@ -21,3 +21,11 @@ If valid → issues a new Access Token.
 This way:
 Access Token = fast, short-lived key for APIs.
 Refresh Token= backup key to get a new access token.
+
+
+Impact of all three :
+Access + Refresh → Secure and user-friendly.
+
+JWT only → Secure but needs many logins.
+
+Basic Auth → Not secure, bad for long use.
