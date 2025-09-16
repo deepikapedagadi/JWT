@@ -29,3 +29,10 @@ Access + Refresh → Secure and user-friendly.
 JWT only → Secure but needs many logins.
 
 Basic Auth → Not secure, bad for long use.
+
+
+token decode n verify : 
+Users register and log in to get a JWT token, which proves identity and allows access to protected APIs. 
+Tokens can be decoded and verified for security, and only valid tokens grant access. 
+This setup balances usability and security over time.
+
